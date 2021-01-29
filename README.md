@@ -21,7 +21,7 @@
 -----
 ## 4. 윈도우의 설계
 **1) Frame의 구현**
-```
+```java
 JFrame frame = new JFrame("★Calculator★"); 
 frame.setPreferredSize(new Dimension(450, 500)); 
 frame.setLocation(250, 250); 
@@ -31,7 +31,7 @@ Container contentPane = frame.getContentPane();
 ㆍ Frame이 시작될 위치를 설정하고 종료버튼을 만들었다.   
 
 **2) TextField의 구현**
-```
+```java
 String result = "0";
 JTextField text = new JTextField();
 text.setFont(new Font("Helvetica", Font.ITALIC, 30));
@@ -46,7 +46,7 @@ text.setBackground(Color.WHITE);
 ㆍ TextField는 계산의 수식을 입력받도록 사용된다.   
 
 **3) Label의 구현**
-```
+```java
 JLabel label = new JLabel(" ");
 label.setPreferredSize(new Dimension(600, 80));
 label.setFont(new Font("Helvetica", Font.ITALIC, 30));
@@ -58,7 +58,7 @@ label.setBackground(Color.WHITE);
 ㆍTextField와 마찬가지로 폰트, 폰트의 크기 및 배경 색상을 설정 하였다.   
 
 **4) Panel의 구현**
-```
+```java
 JPanel panel = new JPanel();
 panel.setBackground(Color.WHITE);
 panel.setPreferredSize(new Dimension(600, 300));
@@ -70,7 +70,7 @@ panel.setFocusable(true);
 ㆍ 다른 컴포넌트와 마찬가지로 폰트, 폰트의 크기, 배경색상을 설정하였다.   
 
 **5) Button의 구현**
-```
+```java
 String operations[] = { "AC", "(", ")", "%", "1/x", "^2", "√", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1",
 		"2", "3", "+", ".", "0", "←", "=" };
 String number[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -99,7 +99,7 @@ for (int i = 0; i < operations.length; i++) {
 ㆍ 버튼의 기능의 구별을 위해 각각의 기능 별로 색상을 달리 구현하였다.   
 
 **6) Component의 위치 설정**
-```
+```java
 contentPane.add(text, BorderLayout.CENTER);
 contentPane.add(label, BorderLayout.NORTH);
 contentPane.add(panel, BorderLayout.SOUTH);
@@ -109,7 +109,7 @@ contentPane.add(panel, BorderLayout.SOUTH);
 -----
 ## 5. 우선순위 연산의 구현
 **1) infix 수식을 postfix 수식으로 변환**
-```
+```java
 int isp[] = { 0, 19, 12, 12, 13, 13, 13, 0 };
 int icp[] = { 20, 19, 12, 12, 13, 13, 13, 0 };
 
@@ -119,7 +119,8 @@ enum precedence {
 ```
 ㆍ 괄호 연산자를 처리하기 위해 int형 배열인 isp 와 icp를 선언하였다.   
 ㆍ isp와 icp배열의 인덱스는 연산자 우선순위 값으로 미리 설정해 두었다.   
-```
+<br/>
+```java
 String postfix(String infix) {
 	Stack<precedence> stack = new Stack<>();
 	boolean operandCheck = false;
@@ -175,7 +176,7 @@ String postfix(String infix) {
 ㆍ 우선순위(top) = 우선순위(incoming) : 결합성에 따라 처리   
 
 **2) postfix 수식의 계산**
-```
+```java
 precedence get_token(char symbol) {
 	switch (symbol) {
 	case '(':
@@ -199,8 +200,9 @@ precedence get_token(char symbol) {
 	}
 }
 ```
-ㆍ 버튼에 따른 우선순위를 설정한다.
-```
+ㆍ 버튼에 따른 우선순위를 설정한다.   
+<br/>
+```java
 double eval(String postfix) {
 	double op1, op2;
 	double operand;
@@ -240,7 +242,7 @@ double eval(String postfix) {
 -----
 ## 6. ButtonActionListener의 구현
 **1) ‘AC’ 버튼의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[0])) {
 	inputString = "0";
 	labelString = "";
@@ -258,7 +260,7 @@ if (e.getSource().equals(buttonArray[0])) {
 ㆍ 오류 처리를 위한 변수(dot, operand, function, rparen) 또한 초기 값인 false로 설정한다.   
 
 **2) ‘(’ 버튼의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[1])) {
 	if (rparen == false) {
 		if (operand == true) {
@@ -280,7 +282,7 @@ if (e.getSource().equals(buttonArray[1])) {
 ㆍ rparen( ‘)’ )과의 수를 맞추기 위해 설정한 변수인 lparenCount 변수의 값을 1 증가시킨다.   
 
 **3) ‘)’ 버튼의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[2])) {
 	if (lparenCount > 0) {
 		if (rparen == false) {
@@ -299,7 +301,7 @@ if (e.getSource().equals(buttonArray[2])) {
 ㆍ ‘(’와의 수를 맞추기 위해 앞서 언급한 lparenCount 변수 값을 1 감소시킨다.   
 
 **4) 연산 버튼 (+, -, /, \*, %)의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[19])) {
 	if (rparen == true) {
 		labelString += "+";
@@ -331,7 +333,7 @@ if (e.getSource().equals(buttonArray[19])) {
 ㆍ 연속적인 연산자 입력을 방지하기 위해 미리 설정해둔 변수인 ‘operand’값을 true로 설정하였다. ‘operand’변수 값이 true이면 그 전에 입력한 연산자가 새로 입력한 연산자로 대체 되는 기능을 하도록 신호를 주는 역할을 한다.   
 
 **5) 연산 버튼(1/X, ^2, √)의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[5])) {
 	double result = Math.pow(Double.parseDouble(text.getText()), 2);
 	if (result == (long) result)
@@ -347,7 +349,7 @@ if (e.getSource().equals(buttonArray[5])) {
 ㆍ 그 결과 값을 TextField에 출력을 하며, 이 때 정수로 값을 표현 할 수 있으면 long형으로 형 변환을 한 후 출력을 시킨다.   
 
 **6) ‘.’ 버튼의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[20])) {
 	if (function == true) {
 		inputString = "0";
@@ -365,7 +367,7 @@ if (e.getSource().equals(buttonArray[20])) {
 ㆍ 소수점 수를 조정하기 위해 미리 설정한 변수인 ‘dot’ 변수의 값을 true로 설정한다.   
 
 **7) ‘←’ 버튼의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[22])) {
 	if (inputString.length() > 0 && operand == false && function == false && !inputString.equals("0")) {
 
@@ -386,7 +388,7 @@ if (e.getSource().equals(buttonArray[22])) {
 ㆍ 또한 TextField에 출력되는 수식이 단 하나만 있을 경우 ‘←’버튼을 눌렀을 때 초기값인 ‘0’으로 설정 해놓는 코드 또한 작성을 하였다.   
 
 **8) ‘=’버튼의 구현**
-```
+```java
 if (e.getSource().equals(buttonArray[23])) {
 	if (lparenCount > 0)
 		for (; lparenCount > 0;) {
@@ -430,7 +432,7 @@ if (e.getSource().equals(buttonArray[23])) {
 ㆍ 이때‘=’버튼을 눌렀을 때 연산 과정에서 설정된 모든 변수의 값을 초기화 하였다.   
 
 **9) 숫자 버튼(0~9)의 구현**
-```
+```java
 for (Integer i = 0; i < 10; i++) {
 	if (e.getActionCommand().equals(number[i])) {
 		if (function == true) {
@@ -452,7 +454,7 @@ for (Integer i = 0; i < 10; i++) {
 
 -----
 ## 7. InputKeyListener의 구현
-```
+```java
 class InputKeyListener implements KeyListener {
 
 	JButton buttonArray[];
