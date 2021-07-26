@@ -93,9 +93,9 @@ for (int i = 0; i < operations.length; i++) {
 	panel.add(buttonArray[i]);
 }
 ```
-ㆍ String 타입의 배열로 버튼의 동작을 구체화 하였다.   
+ㆍ String 타입의 배열로 버튼의 동작을 구체화하였다.   
 ㆍ 각각의 버튼의 폰트, 폰트의 사이즈를 설정하였다.   
-ㆍ for문을 이용하여 각각의 버튼이 동작하게 될 ActionListener에 추가 하였다.    
+ㆍ for문을 이용하여 각각의 버튼이 동작하게 될 ActionListener에 추가하였다.    
 ㆍ 버튼의 기능의 구별을 위해 각각의 기능 별로 색상을 달리 구현하였다.   
 
 **6) Component의 위치 설정**
@@ -117,7 +117,7 @@ enum precedence {
 	lparen, rparen, plus, minus, times, divide, mod, eos, operand
 };
 ```
-ㆍ 괄호 연산자를 처리하기 위해 int형 배열인 isp 와 icp를 선언하였다.   
+ㆍ 괄호 연산자를 처리하기 위해 int형 배열인 isp와 icp를 선언하였다.   
 ㆍ isp와 icp배열의 인덱스는 연산자 우선순위 값으로 미리 설정해 두었다.   
 <br/>
 ```java
@@ -256,7 +256,7 @@ if (e.getSource().equals(buttonArray[0])) {
 }
 ```
 ㆍ 현재 계산기의 상태를 초기화 하는 역할을 한다.   
-ㆍ TextField에 초기 설정인‘0’이 출력되도록 하며, Label또한 초기 상태로 되돌린다.   
+ㆍ TextField에 초기 설정인 ‘0’이 출력되도록 하며, Label 또한 초기 상태로 되돌린다.   
 ㆍ 오류 처리를 위한 변수(dot, operand, function, rparen) 또한 초기 값인 false로 설정한다.   
 
 **2) ‘(’ 버튼의 구현**
@@ -297,10 +297,10 @@ if (e.getSource().equals(buttonArray[2])) {
 	}
 }
 ```
-ㆍ 우선순위를 설정할 때 ‘(’연산자와 같이 사용되는 연산자이다.   
+ㆍ 우선순위를 설정할 때 ‘(’ 연산자와 같이 사용되는 연산자이다.   
 ㆍ ‘(’와의 수를 맞추기 위해 앞서 언급한 lparenCount 변수 값을 1 감소시킨다.   
 
-**4) 연산 버튼 (+, -, /, \*, %)의 구현**
+**4) 연산 버튼(+, -, /, \*, %)의 구현**
 ```java
 if (e.getSource().equals(buttonArray[19])) {
 	if (rparen == true) {
@@ -328,7 +328,7 @@ if (e.getSource().equals(buttonArray[19])) {
 	}
 }
 ```
-ㆍ 연산을 수행 하는 버튼들 의 구현 방식은 똑같기 때문에 한 가지 예로 ‘+’를 들겠다.   
+ㆍ 연산을 수행 하는 버튼들의 구현 방식은 똑같기 때문에 한 가지 예로 ‘+’를 들겠다.   
 ㆍ ‘+’버튼은 TextField의 수식과 연산자 기호를 label에 추가한다.   
 ㆍ 연속적인 연산자 입력을 방지하기 위해 미리 설정해둔 변수인 ‘operand’값을 true로 설정하였다. ‘operand’변수 값이 true이면 그 전에 입력한 연산자가 새로 입력한 연산자로 대체 되는 기능을 하도록 신호를 주는 역할을 한다.   
 
@@ -345,7 +345,7 @@ if (e.getSource().equals(buttonArray[5])) {
 }
 ```
 ㆍ function 버튼(1/X, ^2, √) 중 ‘^2’을 한 가지 예시로 설명을 하겠다.   
-ㆍ TextField의 수식을 wrapper class의 parseDouble 메소드를 이용하여 double형으로 변환을 한 후 해당 연산을 수행한다.   
+ㆍ TextField의 수식을 wrapper class의 parseDouble 메서드를 이용하여 double형으로 변환을 한 후 해당 연산을 수행한다.   
 ㆍ 그 결과 값을 TextField에 출력을 하며, 이 때 정수로 값을 표현 할 수 있으면 long형으로 형 변환을 한 후 출력을 시킨다.   
 
 **6) ‘.’ 버튼의 구현**
@@ -383,11 +383,11 @@ if (e.getSource().equals(buttonArray[22])) {
 	}
 }
 ```
-ㆍ ‘←’버튼이 실행되었을 때 TextField에 출력 되어있는 수식을 오른쪽부터 하나씩 없애는 기능이다.    
-ㆍ 이때 ‘←’버튼이 실행하게 될 여러 가지 조건을 설정하였다. 첫 번째로 TextField에 출력된 문자가 1개 이상이어야 하고, 두 번째로 앞서 설명한 operand, function변수의 값이 모두 false이어야 하며, 마지막으로 TextField의 초기 값인 ‘0 ’이 아니어야 한다. 이로써, ‘←’버튼이 가질 수 있는 오류들을 처리하였다.   
-ㆍ 또한 TextField에 출력되는 수식이 단 하나만 있을 경우 ‘←’버튼을 눌렀을 때 초기값인 ‘0’으로 설정 해놓는 코드 또한 작성을 하였다.   
+ㆍ ‘←’ 버튼이 실행되었을 때 TextField에 출력되어 있는 수식을 오른쪽부터 하나씩 없애는 기능이다.    
+ㆍ 이때 ‘←’ 버튼이 실행하게 될 여러 가지 조건을 설정하였다. 첫 번째로 TextField에 출력된 문자가 1개 이상이어야 하고, 두 번째로 앞서 설명한 operand, function변수의 값이 모두 false이어야 하며, 마지막으로 TextField의 초기 값인 ‘0’이 아니어야 한다. 이로써, ‘←’ 버튼이 가질 수 있는 오류들을 처리하였다.   
+ㆍ 또한 TextField에 출력되는 수식이 단 하나만 있을 경우 ‘←’ 버튼을 눌렀을 때 초기값인 ‘0’으로 설정 해놓는 코드 또한 작성을 하였다.   
 
-**8) ‘=’버튼의 구현**
+**8) ‘=’ 버튼의 구현**
 ```java
 if (e.getSource().equals(buttonArray[23])) {
 	if (lparenCount > 0)
@@ -427,9 +427,9 @@ if (e.getSource().equals(buttonArray[23])) {
 	inputString = "0";
 }
 ```
-ㆍ ‘=’버튼을 눌렀을 때 라벨의 출력된 수식을 초기화하고 TextField에 연산의 결과를 출력하는 기능을 구현하였다.   
-ㆍ ‘=’버튼을 눌렀을 때‘)’연산자의 수를 ‘(’연산자의 수와 맞춰 주기위해 조건문을 추가하였다.   
-ㆍ 이때‘=’버튼을 눌렀을 때 연산 과정에서 설정된 모든 변수의 값을 초기화 하였다.   
+ㆍ ‘=’ 버튼을 눌렀을 때 라벨의 출력된 수식을 초기화하고 TextField에 연산의 결과를 출력하는 기능을 구현하였다.   
+ㆍ ‘=’ 버튼을 눌렀을 때 ‘)’ 연산자의 수를 ‘(’ 연산자의 수와 맞춰 주기위해 조건문을 추가하였다.   
+ㆍ 이때 ‘=’ 버튼을 눌렀을 때 연산 과정에서 설정된 모든 변수의 값을 초기화 하였다.   
 
 **9) 숫자 버튼(0~9)의 구현**
 ```java
@@ -450,7 +450,7 @@ for (Integer i = 0; i < 10; i++) {
 }
 ```
 ㆍ 계산기의 숫자 버튼(0~9)을 누르면 TextField의 출력이 되도록 설정한 코드이다.   
-ㆍ 이때 숫자는 수식의 연산을 String으로 처리하기 때문에 toString()를 이용하여 String으로 형 변환을 한 후 TextField에 올려 진다.   
+ㆍ 이때 숫자는 수식의 연산을 String으로 처리하기 때문에 toString( )를 이용하여 String으로 형 변환을 한 후 TextField에 올려 진다.   
 
 -----
 ## 7. InputKeyListener의 구현
