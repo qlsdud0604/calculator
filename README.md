@@ -565,7 +565,7 @@ for (Integer i = 0; i < 10; i++) {
 ```
 </details>
 	
-ㆍ 계산기의 숫자 버튼(0~9)을 누르면 TextField의 출력이 되도록 설정한 코드이다.   
+ㆍ 계산기의 숫자 버튼(0~9)을 누르면 TextField에 출력이 되도록 설정한 코드이다.   
 ㆍ 이때 숫자는 수식의 연산을 String으로 처리하기 때문에 toString( ) 메서드를 이용하여 String으로 형 변환을 한 후 TextField에 올려 진다.   
 </br>
 
